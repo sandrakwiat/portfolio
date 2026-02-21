@@ -1,0 +1,29 @@
+As part of my pizza sales analysis project, I created a set of key performance indicators (KPIs) to better understand the restaurant’s sales performance. 
+The goal of these KPIs is to provide an overview of overall revenue, order patterns, and customer purchasing behavior. 
+Each metric serves as a foundation for deeper analysis — for example, identifying peak sales periods, evaluating promotions, or assessing profitability.
+Below is a description of the KPIs I calculated, their purpose, and their business relevance:
+
+1. Total Revenue
+This KPI represents the total income generated from all sales during a specific period. It provides a high-level view of business performance and allows the identification of trends, 
+such as seasonal variations or the impact of promotions.
+
+Why I calculated it:
+To evaluate how much revenue the pizzeria generates over time and to help determine whether new product launches or marketing campaigns have a positive financial effect.
+
+    SELECT
+	    SUM(total_price) AS total_revenue
+    FROM
+    	pizza_sales
+
+2. AOV – Average Order Value
+Average Order Value shows how much customers spend on average per order.
+
+Business impact:
+A higher AOV may indicate successful upselling (e.g., adding drinks or sides), while a lower AOV might suggest a need for bundle offers, loyalty programs, or minimum delivery thresholds.
+
+    SELECT
+	    sum(total_price) / count(DISTINCT order_id) AS AOV
+    FROM
+	      pizza_sales
+
+
