@@ -3,27 +3,54 @@ The goal of these KPIs is to provide an overview of overall revenue, order patte
 Each metric serves as a foundation for deeper analysis — for example, identifying peak sales periods, evaluating promotions, or assessing profitability.
 Below is a description of the KPIs I calculated, their purpose, and their business relevance:
 
-1. Total Revenue
+1.  Total Revenue
 This KPI represents the total income generated from all sales during a specific period. It provides a high-level view of business performance and allows the identification of trends, 
 such as seasonal variations or the impact of promotions.
+I calucalted it to evaluate how much revenue the pizzeria generates over time and to help determine whether new product launches or marketing campaigns have a positive financial effect.
 
-Why I calculated it:
-To evaluate how much revenue the pizzeria generates over time and to help determine whether new product launches or marketing campaigns have a positive financial effect.
+  					  SELECT
+	  					  SUM(total_price) AS total_revenue
+  					  FROM
+    					pizza_sales
 
-    SELECT
-	    SUM(total_price) AS total_revenue
-    FROM
-    	pizza_sales
-
-2. AOV – Average Order Value
+2.  AOV – Average Order Value
 Average Order Value shows how much customers spend on average per order.
-
-Business impact:
 A higher AOV may indicate successful upselling (e.g., adding drinks or sides), while a lower AOV might suggest a need for bundle offers, loyalty programs, or minimum delivery thresholds.
 
-    SELECT
-	    sum(total_price) / count(DISTINCT order_id) AS AOV
-    FROM
-	      pizza_sales
+  				  SELECT
+				    sum(total_price) / count(DISTINCT order_id) AS AOV
+   				 FROM
+	      			pizza_sales
+			
+3. Total Pizzas Sold
+
+	This KPI measures the total number of pizzas sold within the selected period.
+	It helps assess product demand and plan inventory accordingly. Tracking this metric over time can also highlight top-selling items and guide menu optimization.
+
+					SELECT 	
+						sum(quantity) 	
+					FROM  
+						pizza_sales
+
+4. Total Orders
+	This metric counts the total number of completed orders, regardless of their value.	
+	It gives insight into overall customer activity and can reveal sales patterns across days, weeks, or months. 
+	It’s also a useful measure when analyzing marketing effectiveness — an increase in orders often reflects successful campaigns or special offers.
+
+
+				SELECT
+					count(DISTINCT order_id) AS total_orders_count
+				FROM
+					pizza_sales ps
+
+5. Average Pizzas per Order
+	This KPI indicates how many pizzas on average are purchased per order.
+	It helps understand customer behavior — whether most orders are made by individuals or groups. 
+	This can inform strategic decisions, such as offering discounts on multiple pizzas or creating family-size deals.
+
+				SELECT
+					sum(quantity)/ count(DISTINCT order_id) AS average_pizza_per_order
+				FROM
+					pizza_sales ps
 
 
